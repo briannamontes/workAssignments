@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Handle Bars</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/handlebars@latest/dist/handlebars.js"></script>
+    <script>
+        $(function() {
+           var data = [
+                {
+                    firstname: "Jonathan",
+                    lastname: "Kolbo",
+                    phone: "123-456-7890"
+                },
+                {
+                    firstname: "Makenzie",
+                    lastname: "Kolbo",
+                    phone: "123-456-7890"
+                },
+                {
+                    firstname: "Brianna",
+                    lastname: "Montes",
+                    phone: "123-456-7890"
+                },
+                {
+                    firstname: "Nayeli",
+                    lastname: "Montes",
+                    phone: "123-456-7890"
+                },
+                {
+                    firstname: "Linda",
+                    lastname: "Montes",
+                    phone: "123-456-7890"
+                }
+            ];
+
+            var dataContext = {
+                title: "Alert - Mower Online",
+                time: "05/17/2022 4:14PM",
+                type: "Information",
+                description : "A mower has come online",
+                mowers : [
+                    223276,
+                    223258,
+                    223278
+                ]
+            }
+
+            var source = document.getElementById("personRow").innerHTML;
+            var template = Handlebars.compile(source);
+            $(".table tbody").append(template(data));
+
+            var alertSource = document.getElementById("AlertTemplate").innerHTML;
+            var alertTemplate = Handlebars.compile(alertSource);
+            $("#Alerts").append(alertTemplate(dataContext));
+
+
+        });
+
+    </script>
+</head>
+<script id="AlertTemplate" type="text/x-handlebars-template">
+    <div>
+        <h2>{{title}}</h2>
+        <p>{{time}}</p>
+        <div>{{description}}</div>
+        <ul>
+            {{#each mowers}}
+                <li>{{this}}</li>
+            {{/each}}
+        </ul>
+    </div>
+</script>
+<script id="personRow" type="text/x-handlebars-template">
+    {{#each this}}  
+        <tr>
+            <td scope="col">{{firstname}}</td>
+            <td scope="col">{{lastname}}</td>
+            <td scope="col">{{phone}}</td>
+        </tr>
+    {{/each}}
+</script>
+<body>
+    <div id="Alerts">
+
+    </div>
+    <table class="table"> 
+        <thead>
+            <tr>
+                <th>
+                    First Name
+                </th>
+                <th>
+                    Last Name
+                </th>
+                <th>
+                    Phone Number
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Template renders here -->
+        </tbody>
+
+    </table>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+</html>

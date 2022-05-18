@@ -1,0 +1,31 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>{{$Message}}</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+<table cellpadding="0" cellspacing="0" border="0" style="font-family:'Helvetica Neue',Helvetica,Arial,sans-serif;font-size:14px;line-height:20px;color:#222;background-color:#fff;width:100%;" >
+
+    <tr>
+        <td style="text-align:left;padding-top:20px;padding-bottom:20px;padding-right:20px;padding-left:20px;" >
+            <div style="font-weight:bold;" >Alert condition <span style="font-family:monospace;background-color:#f0f0f0;" >{{Condition}}</span> detected on
+                <a href="{{{DashboardUrl}}}" style="color:#356dba;text-decoration:none;border-bottom:2px solid;" >{{DashboardTitle}}/{{ChartTitle}}</a></div>
+            {{#if Results}}
+            <div style="margin-top:20px;" >                    
+                <div style="font-weight:bold;" >Results</div>
+                {{#each Results}}
+                <div style="margin-top:10px;" >
+                    <div style="font-family:monospace;font-weight:bold;" >{{pretty this.Key}}</div>
+                    {{#each Slices}}
+                    <div style="font-family:monospace;overflow-wrap:break-word;white-space:pre;white-space:pre-wrap;" ><span style="font-weight:bold;" >{{SliceStart}}</span> {{pretty Rowset}}</div>
+                    {{/each}}
+                </div>
+                {{/each}}
+            </div>
+            {{/if}}
+        </td>
+    
+</table>
+</body>
+</html>
